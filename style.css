@@ -1,0 +1,173 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f0f0f0;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  transition: background 0.3s, color 0.3s;
+}
+h1 {
+  text-align: center;
+  margin: 0 auto;
+  flex: 1;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+.game-area {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.board-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 5px;
+  margin: 20px auto;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border: 2px solid #333;
+  font-size: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.cell.x::before {
+  content: "X";
+  color: #e74c3c;
+}
+
+.cell.o::before {
+  content: "O";
+  color: #2ecc71;
+}
+
+.winning-cell {
+  background-color: #ffeaa7;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+body.dark {
+  background: #1e1e1e;
+  color: #f0f0f0;
+}
+
+body.dark .cell {
+  background: #2c2c2c;
+  border-color: #888;
+}
+
+body.dark .cell.x::before {
+  color: #ff7675;
+}
+
+body.dark .cell.o::before {
+  color: #55efc4;
+}
+
+.scoreboard, .current-player, .message {
+  margin: 10px 0;
+}
+
+button {
+  margin: 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+#themeToggle {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  padding: 5px 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+.scoreboard {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.current-player {
+  font-weight: bold;
+  margin: 10px 0;
+  font-size: 20px;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.controls button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  background-color: #3498db;
+  color: white;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.controls button:hover {
+  background-color: #2980b9;
+}
+
+#themeToggle {
+  font-size: 20px;
+  padding: 5px 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.message {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  height: 24px;
+}
