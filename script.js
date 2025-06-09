@@ -25,12 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentPlayer = "X";
   let gameActive = true;
   let history = [];
-  let mode = "pvp";
+  let mode = "pvp"; // "pvp" ou "pvc"
   let scores = { X: 0, O: 0, D: 0 };
 
   function startGame() {
     cells.forEach(cell => {
-      cell.className = "cell";
+      cell.className = "cell"; // remove x, o, winning-cell
       cell.addEventListener("click", handleClick, { once: true });
     });
     currentPlayer = "X";
@@ -118,15 +118,14 @@ document.addEventListener("DOMContentLoaded", () => {
   function undoMove() {
     if (history.length === 0 || !gameActive) return;
 
-    let last = history.pop();
+    const last = history.pop();
     last.cell.classList.remove(last.player.toLowerCase(), "winning-cell");
     last.cell.addEventListener("click", handleClick, { once: true });
     currentPlayer = last.player;
     playerDisplay.textContent = currentPlayer;
 
-    // Desfazer jogada da CPU também
     if (mode === "pvc" && currentPlayer === "X" && history.length > 0) {
-      let cpu = history.pop();
+      const cpu = history.pop();
       cpu.cell.classList.remove(cpu.player.toLowerCase(), "winning-cell");
       cpu.cell.addEventListener("click", handleClick, { once: true });
     }
@@ -134,15 +133,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function toggleMode() {
     mode = mode === "pvp" ? "pvc" : "pvp";
-    playModeToggle.textContent = mode === "pvp" ? "🔀 Modo: Player vs Player" : "🤖 Modo: Player vs CPU";
+    playModeToggle.textContent = mode === "pvp"
+      ? "🔀 Modo: Player vs Player"
+      : "🤖 Modo: Player vs CPU";
     startGame();
   }
 
   function toggleTheme() {
     document.body.classList.toggle("dark");
-    themeToggle.textContent = document.body.classList.contains("dark") ? "☀️ Modo Claro" : "🌙 Modo Escuro";
+    themeToggle.textContent = document.body.classList.contains("dark")
+      ? "☀️ Modo Claro"
+      : "🌙 Modo Escuro";
   }
 
+  // Eventos
   restartButton.addEventListener("click", startGame);
   undoButton.addEventListener("click", undoMove);
   playModeToggle.addEventListener("click", toggleMode);
